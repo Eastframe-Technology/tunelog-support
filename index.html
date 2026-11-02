@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TuneLog support</title>
+<meta name="description" content="Support and privacy policy for TuneLog, the chromatic tuner and metronome.">
+<style>
+  :root { color-scheme: light dark; --bg:#faf7f2; --fg:#0e0d0b; --muted:#6b645a; --accent:#9a6400; --card:#ffffff; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0e0d0b; --fg:#f4f0e8; --muted:#a8a092; --accent:#f5b841; --card:#1a1814; } }
+  body { margin:0; background:var(--bg); color:var(--fg); font:17px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width:680px; margin:0 auto; padding:48px 16px 64px; }
+  h1 { font-size:34px; margin:0 0 4px; } h2 { margin-top:40px; font-size:22px; }
+  p.lead { color:var(--muted); margin-top:0; }
+  .card { background:var(--card); border-radius:14px; padding:16px 20px; margin:16px 0; }
+  a { color:var(--accent); }
+  .logo { width:72px; height:72px; border-radius:18px; display:block; margin-bottom:16px; }
+  footer { color:var(--muted); font-size:14px; margin-top:48px; }
+</style>
+</head>
+<body>
+<main>
+  <img class="logo" src="icon.png" alt="">
+  <h1>TuneLog</h1>
+  <p class="lead">Chromatic tuner and metronome. Free, with one optional unlock. No ads, no subscription, no account.</p>
+
+  <h2 id="support">Support</h2>
+  <div class="card">
+    <p>Questions, bugs, or feature requests: email <a href="mailto:contact@eastframe-technology.com">contact@eastframe-technology.com</a>. A human reads every message, usually the same day.</p>
+    <p>A <a href="tunelog-ios-demo.mp4">short captioned walkthrough</a> shows every feature.</p>
+  </div>
+
+  <h2>Frequently asked</h2>
+  <div class="card">
+    <p><strong>The needle does not move.</strong> Check that TuneLog may use the microphone (iPhone: Settings › TuneLog; Android: Settings › Apps › TuneLog › Permissions). Play close to the phone's microphone, one string at a time. If another app is recording, TuneLog keeps retrying and starts listening as soon as the microphone is free.</p>
+    <p><strong>My low strings are hard to read.</strong> TuneLog reads down to 31 Hz, the low B of a 5-string bass. Phone microphones pick up little of the fundamental of very low notes, so pluck firmly, let the string ring and hold the phone near the instrument.</p>
+    <p><strong>My orchestra tunes to 442.</strong> Tap "A4 440" at the top of the tuner (or Settings › Calibration) and pick 442, or any value from 415 to 466 Hz.</p>
+    <p><strong>Can the metronome keep going with the screen off?</strong> Yes. The clicks keep their timing because each bar is rendered as one exact audio loop.</p>
+    <p><strong>Is there a subscription?</strong> No. TuneLog Pro is a single purchase. Restore it on a new phone from Settings.</p>
+  </div>
+
+  <h2 id="privacy">Privacy policy</h2>
+  <div class="card">
+    <p><em>Effective 2 November 2026.</em> TuneLog is published by Eastframe Technology LLC.</p>
+    <p><strong>What we collect: nothing.</strong> TuneLog has no account system, no analytics, no advertising, and no crash reporting service. It never connects to the internet and sends no data to us or anyone else.</p>
+    <p><strong>Microphone.</strong> TuneLog uses the microphone only while the tuner is on screen. The sound is analysed on your device, a fraction of a second at a time, to find its pitch. It is never recorded, saved, or sent anywhere.</p>
+    <p><strong>Your settings</strong> (calibration, note names, tuning, metronome setup and saved songs) are stored on your device until you uninstall the app.</p>
+    <p><strong>Purchases</strong> are handled by the App Store or Google Play. We do not see your payment details.</p>
+    <p><strong>Third parties.</strong> The app contains no third-party advertising or analytics code. The only external pages it opens are this page and the store's rating page, and only when you tap them.</p>
+    <p><strong>Children.</strong> TuneLog is not directed at children and collects no personal information from anyone.</p>
+    <p><strong>Changes.</strong> A new version of this policy will be published at this address with a new effective date.</p>
+  </div>
+
+  <footer>© 2026 Eastframe Technology LLC</footer>
+</main>
+</body>
+</html>
