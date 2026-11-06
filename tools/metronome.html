@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Online metronome: free, accurate, with tap tempo and time signatures</title>
+<meta name="description" content="Free online metronome from 20 to 300 BPM with tap tempo, time signatures, subdivisions and accents. Accurate Web Audio timing. No install and no signup.">
+<link rel="canonical" href="https://eastframe-technology.github.io/tunelog-support/tools/metronome.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Online metronome: free, accurate, with tap tempo and time signatures">
+<meta property="og:description" content="Free online metronome from 20 to 300 BPM with tap tempo, time signatures, subdivisions and accents. Accurate Web Audio timing. No install and no signup.">
+<meta property="og:image" content="https://eastframe-technology.github.io/tunelog-support/img/og.jpg">
+<meta property="og:url" content="https://eastframe-technology.github.io/tunelog-support/tools/metronome.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../icon.png">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this metronome accurate?","acceptedAnswer":{"@type":"Answer","text":"Yes, for practice. Each click is given to the browser's audio engine with an exact start time, so a busy page does not push it late. Click times are calculated from the start, so small errors cannot add up over a long session."}},{"@type":"Question","name":"Why did it stop when my phone locked?","acceptedAnswer":{"@type":"Answer","text":"Browsers on phones usually pause sound when the screen locks or you switch app. This page asks the phone to keep the screen on while it plays, where the browser allows that. For long sessions, plug the phone in."}},{"@type":"Question","name":"I hear nothing on my iPhone.","acceptedAnswer":{"@type":"Answer","text":"Web audio can follow the ring and silent switch. Turn silent mode off and raise the volume."}},{"@type":"Question","name":"Does BPM count quarter notes or eighth notes?","acceptedAnswer":{"@type":"Answer","text":"It counts the beats you see. In 3/4 or 4/4 each light is a quarter note. In 6/8, 7/8 and the other /8 meters each light is an eighth note, so 6/8 at 120 means 120 eighth notes per minute."}},{"@type":"Question","name":"Can I change the tempo while it plays?","acceptedAnswer":{"@type":"Answer","text":"Yes. It keeps its place in the bar and moves to the new tempo at the next click."}}]}
+</script>
+</head>
+<body>
+<main>
+  <nav><a class="home" href="../"><img src="../icon.png" alt="">TuneLog</a><a href="../tools/tuner.html">Tuner</a><a href="../tools/metronome.html">Metronome</a><a href="../guides/standard-tunings.html">Tunings</a><a href="../#support">Support</a></nav>
+  <h1>Online metronome</h1>
+  <p class="lead">Set a tempo from 20 to 300 BPM and press Start. Tap to find a tempo, choose a time signature and subdivide the beat. Free, with no install and no signup.</p>
+
+  <section class="tool" aria-label="Metronome">
+    <p class="marking" id="marking">Andante</p>
+    <div class="bpmline">
+      <button class="round" id="minus" type="button" aria-label="Slower">−</button>
+      <input id="bpm" type="number" min="20" max="300" value="100" inputmode="numeric" aria-label="Beats per minute">
+      <button class="round" id="plus" type="button" aria-label="Faster">+</button>
+    </div>
+    <p class="note center">BPM</p>
+    <input id="bpmrange" type="range" min="20" max="300" value="100" aria-label="Tempo slider">
+    <div class="lights" id="lights"></div>
+    <p class="note center">Tap a beat to change it: accent, normal or silent.</p>
+    <div class="row">
+      <label>Time signature<select id="sig"></select></label>
+      <label>Each beat
+        <select id="sub">
+          <option value="1">Beats only</option>
+          <option value="2">Eighth notes</option>
+          <option value="3">Triplets</option>
+          <option value="4">Sixteenth notes</option>
+        </select></label>
+      <label>Sound
+        <select id="sound">
+          <option value="wood">Wood</option>
+          <option value="beep">Beep</option>
+          <option value="click">Click</option>
+          <option value="bell">Bell</option>
+        </select></label>
+    </div>
+    <p class="note" id="note8" hidden>In this meter, each light is an eighth note, and BPM counts eighth notes.</p>
+    <div class="actions">
+      <button class="btn ghost" id="tap" type="button">Tap tempo</button>
+      <button class="btn" id="go" type="button" aria-pressed="false">Start</button>
+    </div>
+    <noscript><p class="msg">This metronome needs JavaScript to schedule its clicks.</p></noscript>
+  </section>
+  <p class="note">On a keyboard: space starts and stops, T taps the tempo. It needs no microphone and sends nothing anywhere.</p>
+
+  <div class="card">Want it without a browser tab? <strong>TuneLog</strong> for Android has a tuner and a metronome that plays each bar as one exact audio loop. <a href="https://play.google.com/store/apps/details?id=com.eastframe.tunelog">See it on Google Play</a>.</div>
+
+  <h2>How the timing works</h2>
+  <p>A timer in a web page can run tens of milliseconds late when the page is busy, and you can hear that. So this page does not play clicks from a timer. A timer wakes every 25 milliseconds and looks 120 milliseconds ahead on the audio clock. Any click due in that window goes to the browser's audio engine with its exact start time. Late timers then don't matter: the click is already queued.</p>
+  <p>The time of each click is calculated directly:</p>
+  <p><code>click time = start + n × 60 / (BPM × clicks per beat)</code></p>
+  <p>Adding the interval over and over would slowly collect rounding errors. Multiplying from the start does not. If a hidden tab's timer sleeps through some clicks, those clicks are skipped rather than played in a burst, and the beat comes back in the same place.</p>
+
+  <h2>Worked example</h2>
+  <p>At 120 BPM, each beat lasts 60 / 120 = 0.5 seconds. A bar of 4/4 lasts 2 seconds. With eighth notes on, a click falls every 0.25 seconds. At 137 BPM a beat lasts 60 / 137 = 0.438 seconds, a length no timer in whole milliseconds could hit exactly, but click 1000 still lands at exactly 1000 × 60 / 137 seconds from the start.</p>
+
+  <h2>Limits</h2>
+  <ul>
+    <li><strong>What we tested.</strong> We ran the scheduler for ten simulated minutes at six tempos, with an irregular timer, and every click fell on its calculated time. The sound itself then depends on your device's audio output, which we can't measure from here.</li>
+    <li><strong>Bluetooth headphones add delay.</strong> The delay is steady, so the tempo stays right, but the lights may look early. Wired headphones or the speaker avoid it.</li>
+    <li><strong>Phones may stop it.</strong> Locking the screen or switching app usually pauses a browser. Keep this page on screen.</li>
+    <li><strong>Background tabs.</strong> On a computer, it schedules further ahead while the tab is hidden, so it should keep going. A browser that fully freezes the tab will still stop it.</li>
+  </ul>
+  <p>For ways to use it, read <a href="../guides/metronome-practice.html">how to practice with a metronome</a>.</p>
+
+  <h2>Frequently asked</h2>
+  <div class="card faq">
+    <p><strong>Is this metronome accurate?</strong> Yes, for practice. Each click is given to the browser's audio engine with an exact start time, so a busy page does not push it late. Click times are calculated from the start, so small errors cannot add up over a long session.</p>
+    <p><strong>Why did it stop when my phone locked?</strong> Browsers on phones usually pause sound when the screen locks or you switch app. This page asks the phone to keep the screen on while it plays, where the browser allows that. For long sessions, plug the phone in.</p>
+    <p><strong>I hear nothing on my iPhone.</strong> Web audio can follow the ring and silent switch. Turn silent mode off and raise the volume.</p>
+    <p><strong>Does BPM count quarter notes or eighth notes?</strong> It counts the beats you see. In 3/4 or 4/4 each light is a quarter note. In 6/8, 7/8 and the other /8 meters each light is an eighth note, so 6/8 at 120 means 120 eighth notes per minute.</p>
+    <p><strong>Can I change the tempo while it plays?</strong> Yes. It keeps its place in the bar and moves to the new tempo at the next click.</p>
+  </div>
+
+  <footer>© 2026 Eastframe Technology LLC · <a href="../privacy.html">Privacy policy</a></footer>
+</main>
+<script src="metronome.js"></script>
+<script src="metronome-ui.js"></script>
+</body>
+</html>

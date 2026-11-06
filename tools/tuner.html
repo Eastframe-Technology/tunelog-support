@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Online chromatic tuner: free guitar, bass, violin and ukulele tuner</title>
+<meta name="description" content="Free online chromatic tuner using your microphone. Tune guitar, bass, ukulele, violin, viola or cello in your browser. No install, and no audio leaves your device.">
+<link rel="canonical" href="https://eastframe-technology.github.io/tunelog-support/tools/tuner.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Online chromatic tuner: free guitar, bass, violin and ukulele tuner">
+<meta property="og:description" content="Free online chromatic tuner using your microphone. Tune guitar, bass, ukulele, violin, viola or cello in your browser. No install, and no audio leaves your device.">
+<meta property="og:image" content="https://eastframe-technology.github.io/tunelog-support/img/og.jpg">
+<meta property="og:url" content="https://eastframe-technology.github.io/tunelog-support/tools/tuner.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../icon.png">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is my audio recorded or uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The sound stays in this browser tab. The page looks at a fraction of a second at a time to find the pitch, then discards it. It saves nothing and sends nothing, and the page's security policy blocks network connections. Your instrument choice and A4 setting are kept only in your browser."}},{"@type":"Question","name":"The browser blocked the microphone. What now?","acceptedAnswer":{"@type":"Answer","text":"Click the microphone or lock icon next to the address bar and allow the microphone for this site, then press Start again. On a phone, also check that your browser has microphone permission in the system settings. Without a microphone you can still pick an instrument and tap a string to tune by ear."}},{"@type":"Question","name":"Why does it show the wrong octave?","acceptedAnswer":{"@type":"Answer","text":"Some instruments, and many phone microphones on low notes, put more energy in the overtones than in the fundamental. Pick your instrument from the menu: the tuner then compares against the nearest string."}},{"@type":"Question","name":"What if my group tunes to 442?","acceptedAnswer":{"@type":"Answer","text":"Set A4 to 442 before you start. You can use any value from 415 to 466 Hz."}},{"@type":"Question","name":"How low and how high does it read?","acceptedAnswer":{"@type":"Answer","text":"It is built for the 31 Hz low B of a 5-string bass up to the 4186 Hz top C of a piano. On a laptop or phone microphone the very lowest notes may need a firm pluck and a closer microphone."}}]}
+</script>
+</head>
+<body>
+<main>
+  <nav><a class="home" href="../"><img src="../icon.png" alt="">TuneLog</a><a href="../tools/tuner.html">Tuner</a><a href="../tools/metronome.html">Metronome</a><a href="../guides/standard-tunings.html">Tunings</a><a href="../#support">Support</a></nav>
+  <h1>Online chromatic tuner</h1>
+  <p class="lead">Press Start, allow the microphone and play one note. It works for guitar, bass, ukulele, violin, viola, cello, or any instrument in chromatic mode. No install and no signup.</p>
+
+  <section class="tool" aria-label="Tuner">
+    <div class="row">
+      <label>Instrument<select id="tuning"></select></label>
+      <label>A4 reference (Hz)<input id="a4" type="number" min="415" max="466" step="1" value="440" inputmode="numeric"></label>
+    </div>
+    <svg class="gauge" viewBox="0 0 320 178" role="img" aria-label="Tuning needle, from 50 cents flat to 50 cents sharp"><line class="tick major" x1="37.0" y1="93.0" x2="49.1" y2="100.0"/><line class="tick" x1="45.1" y1="80.5" x2="50.8" y2="84.6"/><line class="tick" x1="54.5" y1="69.0" x2="59.7" y2="73.7"/><line class="tick" x1="65.0" y1="58.5" x2="69.7" y2="63.7"/><line class="tick" x1="76.5" y1="49.1" x2="80.6" y2="54.8"/><line class="tick major" x1="89.0" y1="41.0" x2="96.0" y2="53.1"/><line class="tick" x1="102.2" y1="34.3" x2="105.1" y2="40.7"/><line class="tick" x1="116.1" y1="28.9" x2="118.3" y2="35.6"/><line class="tick" x1="130.5" y1="25.1" x2="131.9" y2="32.0"/><line class="tick" x1="145.2" y1="22.8" x2="145.9" y2="29.7"/><line class="tick major" x1="160.0" y1="22.0" x2="160.0" y2="36.0"/><line class="tick" x1="174.8" y1="22.8" x2="174.1" y2="29.7"/><line class="tick" x1="189.5" y1="25.1" x2="188.1" y2="32.0"/><line class="tick" x1="203.9" y1="28.9" x2="201.7" y2="35.6"/><line class="tick" x1="217.8" y1="34.3" x2="214.9" y2="40.7"/><line class="tick major" x1="231.0" y1="41.0" x2="224.0" y2="53.1"/><line class="tick" x1="243.5" y1="49.1" x2="239.4" y2="54.8"/><line class="tick" x1="255.0" y1="58.5" x2="250.3" y2="63.7"/><line class="tick" x1="265.5" y1="69.0" x2="260.3" y2="73.7"/><line class="tick" x1="274.9" y1="80.5" x2="269.2" y2="84.6"/><line class="tick major" x1="283.0" y1="93.0" x2="270.9" y2="100.0"/><text x="63.0" y="113.0">−50</text><text x="104.0" y="72.0">−25</text><text x="216.0" y="72.0">+25</text><text x="257.0" y="113.0">+50</text><path class="zone" d="M144.5 16.8A148 148 0 0 1 175.5 16.8"/><g id="needle"><line class="needle" x1="160" y1="164" x2="160" y2="38"/></g><circle class="hub" cx="160" cy="164" r="8"/></svg>
+    <div class="readout" id="readout">
+      <div class="big"><span id="note">&ndash;</span><sub id="octave"></sub></div>
+      <p class="hint" id="hint" role="status">Press Start and play one note.</p>
+    </div>
+    <div class="nums"><span id="cents"></span><span id="hz"></span></div>
+    <div class="strings" id="strings"></div>
+    <p class="note center" id="stringhelp" hidden>Tap a string to hear its note.</p>
+    <div class="meter" aria-hidden="true"><div id="level"></div></div>
+    <div class="center"><button class="btn" id="start" type="button" aria-pressed="false">Start tuner</button></div>
+    <div class="msg" id="micmsg" role="alert" hidden></div>
+    <noscript><p class="msg">This tuner needs JavaScript to read the microphone.</p></noscript>
+  </section>
+  <p class="note"><strong>Nothing leaves your browser.</strong> The sound is analysed in this page, a fraction of a second at a time, and never recorded, saved or sent. The microphone turns off when you press Stop or leave the tab.</p>
+
+  <div class="card">Prefer an app? <strong>TuneLog</strong> for Android uses the same pitch detection and needs no browser. <a href="https://play.google.com/store/apps/details?id=com.eastframe.tunelog">See it on Google Play</a>.</div>
+
+  <h2>How to tune with it</h2>
+  <ol>
+    <li>Pick your instrument, or leave it on chromatic.</li>
+    <li>Press Start tuner and allow the microphone when the browser asks.</li>
+    <li>Play one string or note and let it ring. The needle shows how far off you are.</li>
+    <li>Tighten if it says too low, loosen if it says too high. Within 5 cents, the note turns green. With an instrument chosen, each string gets a mark once it holds within 3 cents.</li>
+  </ol>
+  <p>Need the note names and frequencies? See <a href="../guides/standard-tunings.html">standard tunings for guitar, bass, violin, ukulele and cello</a>. If the needle wanders, read <a href="../guides/steady-tuner-reading.html">how to get a steady reading</a>.</p>
+
+  <h2>How it works</h2>
+  <p>The tuner finds the repeating period of the sound with the YIN pitch detection method, using an analysis frame long enough to hold a 31 Hz wave. That gives a frequency f. The nearest note and the error come from two formulas:</p>
+  <p><code>note number = 69 + 12 × log2(f / A4)</code></p>
+  <p><code>cents off = 100 × (note number − nearest whole note number)</code></p>
+  <p>A cent is one hundredth of a semitone. The display shows the median of the last few readings, so one stray frame does not move the needle. The code is the same logic as the TuneLog app, ported to JavaScript.</p>
+
+  <h2>Worked example</h2>
+  <p>You play an A and the tuner measures 445 Hz, with A4 set to 440. The note number is 69 + 12 × log2(445 / 440) = 69.196. The nearest note is 69, which is A4. The error is 100 × 0.196 = +19.6 cents, so the display reads A4, +20 cents, too high: tune down. With A4 set to 445, the same note would read in tune.</p>
+
+  <h2>Limits</h2>
+  <ul>
+    <li><strong>It hears one note at a time.</strong> Chords and several ringing strings confuse it.</li>
+    <li><strong>The microphone matters.</strong> We tested the detection with synthetic sine waves and harmonic tones, at 44.1, 48 and 96 kHz sample rates, and it came within 1 cent on pure tones. A real instrument in a real room is noisier, and a laptop microphone hears little of a bass.</li>
+    <li><strong>A browser asks for permission.</strong> Microphone access needs a secure page and your consent, and browsers may stop the microphone when the tab is in the background.</li>
+    <li><strong>Equal temperament.</strong> It compares against equal-tempered notes. String players who tune pure fifths by ear will see small offsets on the outer strings, which is normal.</li>
+  </ul>
+
+  <h2>Frequently asked</h2>
+  <div class="card faq">
+    <p><strong>Is my audio recorded or uploaded?</strong> No. The sound stays in this browser tab. The page looks at a fraction of a second at a time to find the pitch, then discards it. It saves nothing and sends nothing, and the page's security policy blocks network connections. Your instrument choice and A4 setting are kept only in your browser.</p>
+    <p><strong>The browser blocked the microphone. What now?</strong> Click the microphone or lock icon next to the address bar and allow the microphone for this site, then press Start again. On a phone, also check that your browser has microphone permission in the system settings. Without a microphone you can still pick an instrument and tap a string to tune by ear.</p>
+    <p><strong>Why does it show the wrong octave?</strong> Some instruments, and many phone microphones on low notes, put more energy in the overtones than in the fundamental. Pick your instrument from the menu: the tuner then compares against the nearest string.</p>
+    <p><strong>What if my group tunes to 442?</strong> Set A4 to 442 before you start. You can use any value from 415 to 466 Hz.</p>
+    <p><strong>How low and how high does it read?</strong> It is built for the 31 Hz low B of a 5-string bass up to the 4186 Hz top C of a piano. On a laptop or phone microphone the very lowest notes may need a firm pluck and a closer microphone.</p>
+  </div>
+
+  <footer>© 2026 Eastframe Technology LLC · <a href="../privacy.html">Privacy policy</a></footer>
+</main>
+<script src="tuner.js"></script>
+<script src="tuner-ui.js"></script>
+</body>
+</html>
